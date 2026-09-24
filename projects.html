@@ -176,7 +176,7 @@
       left: 0;
       width: 100%;
       height: 86px;
-      z-index: 100;
+      z-index: 1000;
       transition: background 0.3s ease, backdrop-filter 0.3s ease, border-bottom 0.3s ease;
       display: flex;
       align-items: center;
@@ -1354,6 +1354,142 @@
       letter-spacing: 0.05em;
     }
 
+    /* Mobile Menu Toggle Button */
+    .mobile-menu-toggle {
+      display: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.25s ease;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1001;
+    }
+
+    .mobile-menu-toggle .bar {
+      width: 16px;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 2px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .mobile-menu-toggle.active .bar-1 {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .mobile-menu-toggle.active .bar-2 {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .mobile-menu-toggle.active .bar-3 {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    body.nav-open .header {
+      background: transparent !important;
+      border-bottom-color: transparent !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    /* Mobile Navigation Drawer */
+    .mobile-nav-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      background: rgba(12, 10, 18, 0.98);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      padding: 85px 24px 32px 24px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow-y: auto;
+    }
+
+    .mobile-nav-drawer.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .mobile-nav-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #34d399;
+      width: fit-content;
+      margin-bottom: 20px;
+    }
+
+    .mobile-nav-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+    }
+
+    .mobile-nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mobile-nav-list li a {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      transition: color 0.2s ease, padding 0.2s ease;
+    }
+
+    .mobile-nav-list li a:hover,
+    .mobile-nav-list li a:active {
+      color: var(--accent-orange);
+      padding-left: 6px;
+    }
+
+    .mobile-nav-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
     /* ==========================================================================
        RESPONSIVE DESIGN
        ========================================================================== */
@@ -1390,24 +1526,91 @@
       .logo {
         margin-left: 0;
       }
+      .logo-img {
+        height: 28px;
+      }
       .nav-links {
         display: none;
       }
+      .mobile-menu-toggle {
+        display: flex;
+      }
+      .header-inner {
+        padding: 14px 16px;
+      }
+      .header-inner .btn-pill-white {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+      }
+      .header-inner .btn-pill-white .icon-circle {
+        width: 20px;
+        height: 20px;
+      }
       .projects-hero {
-        padding-top: 130px;
+        padding-top: 110px;
+        padding-bottom: 30px;
       }
       .projects-title {
-        font-size: 2.6rem;
+        font-size: clamp(2rem, 7vw, 2.6rem);
+        line-height: 1.15;
+      }
+      .projects-lead {
+        font-size: 0.95rem;
       }
       .projects-stats-row {
         grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
+        gap: 12px;
+      }
+      .stat-card {
+        padding: 18px 14px;
+      }
+      .stat-number {
+        font-size: 1.75rem;
+      }
+      .stat-label {
+        font-size: 0.75rem;
+      }
+      .filter-bar {
+        border-radius: 16px;
+        padding: 8px 12px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-wrap: nowrap;
+        gap: 8px;
+      }
+      .filter-bar::-webkit-scrollbar {
+        display: none;
+      }
+      .filter-pills {
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        gap: 6px;
+      }
+      .filter-btn {
+        padding: 6px 14px;
+        font-size: 0.8rem;
+        flex-shrink: 0;
+      }
+      .filter-count {
+        display: none;
       }
       .projects-grid {
         grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .project-card {
+        border-radius: 20px;
+      }
+      .card-body {
+        padding: 24px 20px;
       }
       .archive-card {
         padding: 24px 16px;
+        border-radius: 20px;
+      }
+      .archive-title {
+        font-size: 1.6rem;
       }
       .archive-table th:nth-child(3),
       .archive-table td:nth-child(3),
@@ -1417,17 +1620,70 @@
       }
       .skills-summary-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .cta-banner {
+        padding: 32px 20px;
+        border-radius: 20px;
+      }
+      .cta-title {
+        font-size: 1.8rem;
+      }
+      .cta-action {
+        width: 100%;
+      }
+      .cta-action .btn-pill-orange {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .footer-nav-groups {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+      .footer-bottom {
+        flex-direction: column-reverse;
+        gap: 16px;
+        align-items: center;
+        text-align: center;
+      }
+      .modal-backdrop {
+        padding: 16px 12px 40px 12px;
+      }
+      .modal-container {
+        border-radius: 20px;
+      }
+      .modal-image-wrap {
+        border-radius: 20px 20px 0 0;
+      }
+      .modal-body {
+        padding: 24px 18px;
+      }
+      .modal-title {
+        font-size: 1.35rem;
+      }
+      .modal-metrics-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 16px;
+      }
+      .header-inner {
+        padding: 12px 14px;
       }
       .footer-nav-groups {
         grid-template-columns: 1fr;
         gap: 24px;
       }
-      .footer-bottom {
-        flex-direction: column;
-        gap: 16px;
-        align-items: flex-start;
-      }
-      .modal-metrics-grid {
+      .projects-stats-row {
         grid-template-columns: 1fr;
       }
     }
@@ -1468,9 +1724,49 @@
               </svg>
             </span>
           </a>
+          <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" type="button">
+            <span class="bar bar-1"></span>
+            <span class="bar bar-2"></span>
+            <span class="bar bar-3"></span>
+          </button>
         </div>
       </div>
     </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+      <div class="mobile-nav-badge">
+        <span class="dot"></span> Open to Full-Stack & Python Roles
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html#home" class="mobile-nav-link"><span>Home</span> <span>→</span></a></li>
+        <li><a href="index.html#about" class="mobile-nav-link"><span>About</span> <span>→</span></a></li>
+        <li><a href="#top" class="mobile-nav-link" style="color:var(--accent-orange);"><span>Projects (5)</span> <span>→</span></a></li>
+        <li><a href="index.html#workflow" class="mobile-nav-link"><span>Engineering Process</span> <span>→</span></a></li>
+        <li><a href="index.html#palette" class="mobile-nav-link"><span>Tech Architecture</span> <span>→</span></a></li>
+        <li><a href="assets/Tushar_Sawale_Resume.pdf" target="_blank" rel="noopener" class="mobile-nav-link"><span>Resume PDF</span> <span>↗</span></a></li>
+      </ul>
+      <div class="mobile-nav-actions">
+        <a href="https://wa.me/917028182891" target="_blank" rel="noopener" class="btn-pill-orange" style="background:#25D366; border-color:#25D366; color:#0b0709; font-weight:700; justify-content:center;">
+          <span>WhatsApp Chat</span>
+          <span class="icon-circle" style="background:rgba(0,0,0,0.2); color:#000;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
+        </a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sawaletushar3@gmail.com" target="_blank" rel="noopener" class="btn-pill-white" style="justify-content:center;">
+          <span>Email Me</span>
+          <span class="icon-circle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
 
     <main>
 
@@ -2266,6 +2562,60 @@
           closeModal();
         }
       });
+
+      // Mobile Navigation Drawer Toggle
+      const mobileToggle = document.getElementById('mobileMenuToggle');
+      const mobileDrawer = document.getElementById('mobileNavDrawer');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+      function toggleMobileMenu() {
+        const isOpen = mobileDrawer.classList.toggle('open');
+        mobileToggle.classList.toggle('active', isOpen);
+        document.body.classList.toggle('nav-open', isOpen);
+        mobileDrawer.setAttribute('aria-hidden', !isOpen);
+
+        if (isOpen) {
+          document.body.style.overflow = 'hidden';
+          document.documentElement.classList.add('lenis-stopped');
+          if (lenis) lenis.stop();
+        } else {
+          document.body.style.overflow = '';
+          document.documentElement.classList.remove('lenis-stopped');
+          if (lenis) lenis.start();
+        }
+      }
+
+      function closeMobileMenu() {
+        if (!mobileDrawer || !mobileDrawer.classList.contains('open')) return;
+        mobileDrawer.classList.remove('open');
+        if (mobileToggle) mobileToggle.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        mobileDrawer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        document.documentElement.classList.remove('lenis-stopped');
+        if (lenis) lenis.start();
+      }
+
+      if (mobileToggle && mobileDrawer) {
+        mobileToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleMobileMenu();
+        });
+
+        mobileNavLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            closeMobileMenu();
+          });
+        });
+
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closeMobileMenu();
+        });
+
+        window.addEventListener('resize', () => {
+          if (window.innerWidth > 768) closeMobileMenu();
+        });
+      }
 
     })();
   </script>
