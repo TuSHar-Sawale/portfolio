@@ -336,6 +336,112 @@
       transition: transform 0.2s ease;
     }
 
+    .btn-pill-subtle {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.07);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 9999px;
+      backdrop-filter: blur(12px);
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-pill-subtle:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+      color: #ffffff;
+    }
+
+    .nav-resume-link {
+      color: var(--accent-orange) !important;
+      font-weight: 600 !important;
+    }
+
+    .card-actions-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .card-action-btn {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: background 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .card-action-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .card-action-btn.gh {
+      color: var(--accent-orange);
+      border-color: rgba(250, 90, 30, 0.3);
+      background: rgba(250, 90, 30, 0.08);
+    }
+
+    .card-action-btn.gh:hover {
+      background: rgba(250, 90, 30, 0.2);
+      border-color: var(--accent-orange);
+    }
+
+    .modal-section-block {
+      margin-top: 14px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      text-align: left;
+    }
+
+    .modal-section-title {
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent-orange);
+      margin-bottom: 5px;
+    }
+
+    .modal-section-content {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .modal-flow-code {
+      display: inline-block;
+      font-family: monospace;
+      font-size: 0.8rem;
+      background: rgba(0, 0, 0, 0.4);
+      color: #38bdf8;
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      margin-top: 6px;
+      word-break: break-word;
+    }
+
     /* Badges */
     .section-badge-blue {
       display: inline-flex;
@@ -1334,6 +1440,7 @@
             <li><a href="projects.html" class="active">Projects (5)</a></li>
             <li><a href="index.html#workflow">Engineering Process</a></li>
             <li><a href="index.html#palette">Tech Architecture</a></li>
+            <li><a href="./assets/Tushar_Sawale_Resume.pdf" target="_blank" rel="noopener" class="nav-resume-link">Resume ↗</a></li>
           </ul>
           <a href="#contact" class="btn-pill-white">
             <span>Get in touch</span>
@@ -1366,9 +1473,9 @@
               </h1>
               <div class="projects-subtext-col">
                 <p class="projects-subtext">
-                  A comprehensive portfolio of production-grade full-stack web applications, facial computer vision models, predictive disease diagnosis algorithms, and autonomous n8n workflow systems.
+                  A comprehensive portfolio of full-stack web applications, facial computer vision models, predictive disease diagnosis models, and event-driven n8n workflow systems.
                 </p>
-                <div style="display:flex; gap: 16px; align-items:center; flex-wrap:wrap;">
+                <div style="display:flex; gap: 14px; align-items:center; flex-wrap:wrap;">
                   <a href="#featured" class="btn-pill-orange">
                     <span>Explore projects</span>
                     <span class="icon-circle">
@@ -1378,7 +1485,17 @@
                       </svg>
                     </span>
                   </a>
-                  <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="btn-pill-white">
+                  <a href="./assets/Tushar_Sawale_Resume.pdf" target="_blank" download="Tushar_Sawale_Resume.pdf" class="btn-pill-white">
+                    <span>Download Resume</span>
+                    <span class="icon-circle">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                      </svg>
+                    </span>
+                  </a>
+                  <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="btn-pill-subtle">
                     <span>GitHub Profile ↗</span>
                   </a>
                 </div>
@@ -1389,19 +1506,19 @@
             <div class="projects-stats-row">
               <div class="stat-box">
                 <div class="stat-num">5<span>+</span></div>
-                <div class="stat-label">Production Projects</div>
+                <div class="stat-label">Featured Projects</div>
               </div>
               <div class="stat-box">
                 <div class="stat-num">92<span>%</span></div>
-                <div class="stat-label">ML Model Accuracy</div>
+                <div class="stat-label">Dataset Test Accuracy</div>
               </div>
               <div class="stat-box">
-                <div class="stat-num">80<span>%+</span></div>
-                <div class="stat-label">Manual Tracking Saved</div>
+                <div class="stat-num">Auto</div>
+                <div class="stat-label">Attendance & Support</div>
               </div>
               <div class="stat-box">
                 <div class="stat-num">3<span>x</span></div>
-                <div class="stat-label">EY Professional Honors</div>
+                <div class="stat-label">EY Credentials</div>
               </div>
             </div>
 
@@ -1440,8 +1557,12 @@
             <article class="project-card" data-category="ai" 
                      data-title="Face Recognition Attendance System"
                      data-cat-label="AI & Computer Vision"
-                     data-desc="Real-time facial detection and recognition attendance platform built with OpenCV and face recognition libraries. Integrated with Node.js/Express REST APIs and Supabase for PostgreSQL persistence, authentication, and cloud image storage. Automated student and employee logging, reducing manual attendance effort and errors by over 80%."
-                     data-metric1="80%+ Time Saved" data-metric2="OpenCV Vision" data-metric3="Supabase Cloud Auth"
+                     data-desc="Real-time facial detection and recognition attendance platform built with OpenCV and face recognition libraries. Integrated with Node.js/Express REST APIs and Supabase for PostgreSQL persistence, authentication, and cloud image storage. Automated student and employee logging, reducing manual attendance effort and record errors."
+                     data-problem="Manual roll calls and paper attendance logs were prone to proxy attendance, human recording errors, and time-consuming manual tallying."
+                     data-solution="Engineered a desktop & web portal using OpenCV facial recognition models paired with Supabase PostgreSQL to authenticate users and log timestamps in real time."
+                     data-flow="Camera Stream → OpenCV Haar Cascade / Face Encodings → Vector Match → Node.js / Express API → Supabase PostgreSQL"
+                     data-metric1="Automated Detection" data-metric2="OpenCV Vision" data-metric3="Supabase Auth"
+                     data-github="https://github.com/TuSHar-Sawale"
                      data-img="./assets/face_recognition.jpg">
               <div class="card-media">
                 <span class="card-overlay-badge">Computer Vision</span>
@@ -1455,7 +1576,7 @@
                 </div>
                 <h3 class="card-title">Face Recognition Attendance System</h3>
                 <p class="card-description">
-                  Real-time facial recognition attendance platform eliminating manual roll calls by over 80% with Supabase & OpenCV.
+                  Automated attendance platform with real-time facial recognition, OpenCV vector matching, and Supabase cloud data storage.
                 </p>
                 <div class="card-footer-tags">
                   <span class="pill-tag">React.js</span>
@@ -1463,35 +1584,47 @@
                   <span class="pill-tag">Node.js</span>
                   <span class="pill-tag">Supabase</span>
                 </div>
+                <div class="card-actions-row">
+                  <span class="card-action-btn">Case Study ↗</span>
+                  <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="card-action-btn gh" onclick="event.stopPropagation()">GitHub ↗</a>
+                </div>
               </div>
             </article>
 
-            <!-- Card 2: Disease Prediction and Medical Cure -->
+            <!-- Card 2: Disease Prediction & Health Guidance -->
             <article class="project-card" data-category="ai"
-                     data-title="Disease Prediction and Medical Cure"
+                     data-title="Disease Prediction & Health Guidance"
                      data-cat-label="Machine Learning & Healthcare"
-                     data-desc="Intelligent diagnostic web platform predicting illnesses based on user-entered symptoms using Decision Tree, Random Forest, and Logistic Regression models, achieving ~92% accuracy. Data preprocessing performed via Pandas and NumPy. Flask web app returns disease prognosis alongside precautions, medications, diet, and workout recommendations with Tableau & Power BI visual analytics."
-                     data-metric1="~92% Accuracy" data-metric2="Decision Tree & Forest" data-metric3="Tableau / Power BI"
+                     data-desc="Diagnostic web platform predicting potential conditions from symptom patterns using Decision Tree, Random Forest, and Logistic Regression models, achieving ~92% test accuracy on the project dataset. Built with Flask, Pandas, and NumPy, and features Tableau and Power BI visual dashboards for symptom and lifestyle insights."
+                     data-problem="Patients experiencing early symptoms often struggle with preliminary diagnosis before consulting a doctor and lack structured diet or precaution guidelines."
+                     data-solution="Built an ML web application using Scikit-learn algorithms to analyze symptoms against clinical datasets and provide precautionary health guidance and visual analytics."
+                     data-flow="User Symptoms Input → Preprocessing (Pandas/NumPy) → Scikit-learn Classifiers (Random Forest / Decision Tree) → Flask REST API → Tableau / Power BI"
+                     data-metric1="92% Test Accuracy" data-metric2="Random Forest / Tree" data-metric3="Flask REST API"
+                     data-github="https://github.com/TuSHar-Sawale"
                      data-img="./assets/disease_prediction.jpg">
               <div class="card-media">
                 <span class="card-overlay-badge">Machine Learning</span>
                 <span class="card-arrow-circle">↗</span>
-                <img src="./assets/disease_prediction.jpg" alt="Disease Prediction and Medical Cure" loading="lazy">
+                <img src="./assets/disease_prediction.jpg" alt="Disease Prediction & Health Guidance" loading="lazy">
               </div>
               <div class="card-body">
                 <div class="card-meta-row">
                   <span class="card-meta-category">Health Tech</span>
                   <span>2025</span>
                 </div>
-                <h3 class="card-title">Disease Prediction & Medical AI</h3>
+                <h3 class="card-title">Disease Prediction & Health Guidance</h3>
                 <p class="card-description">
-                  Predictive diagnosis platform trained on clinical symptoms (~92% accuracy) offering dietary & medical guidance.
+                  Predictive diagnosis platform trained on clinical symptoms (~92% test accuracy on project dataset) offering dietary & wellness guidance.
                 </p>
                 <div class="card-footer-tags">
                   <span class="pill-tag">Python</span>
                   <span class="pill-tag">Flask</span>
                   <span class="pill-tag">Scikit-learn</span>
                   <span class="pill-tag">Pandas</span>
+                </div>
+                <div class="card-actions-row">
+                  <span class="card-action-btn">Case Study ↗</span>
+                  <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="card-action-btn gh" onclick="event.stopPropagation()">GitHub ↗</a>
                 </div>
               </div>
             </article>
@@ -1500,8 +1633,12 @@
             <article class="project-card" data-category="automation"
                      data-title="AI Support Ticket Automation System"
                      data-cat-label="Workflow Automation & Generative AI"
-                     data-desc="Automated customer support pipeline built using n8n and Google Gemini API. Listens for inbound customer queries via webhook triggers, evaluates query intent and sentiment, generates intelligent context-aware solutions with Gemini AI, and dispatches automated replies via Gmail integration in real time."
-                     data-metric1="Zero Manual Touch" data-metric2="Gemini AI Pipeline" data-metric3="Sub-second Triggers"
+                     data-desc="Automated customer support pipeline built using n8n workflows and Google Gemini API. Ingests inbound inquiries via webhook triggers, evaluates sentiment and intent, drafts context-aware answers, and sends replies via Gmail API."
+                     data-problem="Manual triage of repetitive customer support inquiries causes response delays, backlog congestion, and high manual drafting effort."
+                     data-solution="Created an event-driven workflow in n8n that listens to incoming webhooks, uses Google Gemini for intent parsing, and dispatches structured email replies via Gmail."
+                     data-flow="Webhook Trigger → Sentiment & Intent Analysis → Gemini API Prompt Template → Structured Draft → Gmail API Dispatch"
+                     data-metric1="Automated Routing" data-metric2="Gemini AI Intent" data-metric3="Gmail API Dispatch"
+                     data-github="https://github.com/TuSHar-Sawale"
                      data-img="./assets/support_ticket.jpg">
               <div class="card-media">
                 <span class="card-overlay-badge">Workflow Automation</span>
@@ -1515,13 +1652,17 @@
                 </div>
                 <h3 class="card-title">AI Support Ticket Automation</h3>
                 <p class="card-description">
-                  Autonomous support ticketing pipeline connecting webhooks, Google Gemini AI, and Gmail for instant email resolutions.
+                  Event-driven support ticketing pipeline connecting webhooks, Google Gemini AI, and Gmail API for instant automated email responses.
                 </p>
                 <div class="card-footer-tags">
                   <span class="pill-tag">n8n</span>
                   <span class="pill-tag">Google Gemini API</span>
                   <span class="pill-tag">Webhooks</span>
-                  <span class="pill-tag">Gmail</span>
+                  <span class="pill-tag">Gmail API</span>
+                </div>
+                <div class="card-actions-row">
+                  <span class="card-action-btn">Case Study ↗</span>
+                  <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="card-action-btn gh" onclick="event.stopPropagation()">GitHub ↗</a>
                 </div>
               </div>
             </article>
@@ -1530,8 +1671,12 @@
             <article class="project-card" data-category="automation"
                      data-title="AI Image Generator Telegram Bot"
                      data-cat-label="Bot Architecture & Workflow Automation"
-                     data-desc="Automated conversational Telegram bot that synthesizes custom AI artwork from natural language prompts using n8n workflows. Integrated Telegram Bot API with Pollinations AI API using REST HTTP requests and JSON serialization, ensuring instant responsive cloud image generation and delivery."
-                     data-metric1="24/7 Availability" data-metric2="Webhook Driven" data-metric3="REST / JSON"
+                     data-desc="Conversational Telegram bot that synthesizes custom AI artwork from chat prompts using n8n workflows. Connects Telegram Bot API with Pollinations AI API via HTTP REST requests and JSON handling to deliver rendered images directly to the user."
+                     data-problem="Accessing AI image generators often requires complex web user interfaces, API keys, or specialized software installations."
+                     data-solution="Built an accessible chat bot directly inside Telegram using n8n webhook nodes to receive prompts, request image generation from Pollinations AI, and send images back."
+                     data-flow="Telegram User Prompt → Webhook Ingestion → n8n HTTP Request Node → Pollinations AI API → Image Binary → Telegram SendPhoto API"
+                     data-metric1="Webhook Driven" data-metric2="Telegram Bot API" data-metric3="Pollinations AI"
+                     data-github="https://github.com/TuSHar-Sawale"
                      data-img="./assets/telegram_bot.jpg">
               <div class="card-media">
                 <span class="card-overlay-badge">Telegram Bot & GenAI</span>
@@ -1545,7 +1690,7 @@
                 </div>
                 <h3 class="card-title">AI Image Generator Telegram Bot</h3>
                 <p class="card-description">
-                  Autonomous Telegram bot generating artistic visuals from chat prompts via n8n workflow triggers and cloud APIs.
+                  Conversational Telegram bot generating artistic visuals from chat prompts via n8n workflow triggers and cloud AI APIs.
                 </p>
                 <div class="card-footer-tags">
                   <span class="pill-tag">n8n</span>
@@ -1553,20 +1698,28 @@
                   <span class="pill-tag">Pollinations AI</span>
                   <span class="pill-tag">REST API</span>
                 </div>
+                <div class="card-actions-row">
+                  <span class="card-action-btn">Case Study ↗</span>
+                  <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="card-action-btn gh" onclick="event.stopPropagation()">GitHub ↗</a>
+                </div>
               </div>
             </article>
 
-            <!-- Card 5: Job Finder Portal with Resume Builder -->
+            <!-- Card 5: Job Finder Portal with Dynamic Resume Builder -->
             <article class="project-card" data-category="web"
                      data-title="Job Finder Portal with Dynamic Resume Builder"
                      data-cat-label="Full-Stack Web Development"
                      data-desc="Full-stack web application designed for job seekers and recruiters. Features secure user authentication, interactive search filters, recruiter posting dashboards, and a live client-side dynamic resume generator with complete CRUD operations supported by a PHP backend and MySQL database."
-                     data-metric1="Full CRUD Engine" data-metric2="Resume Builder" data-metric3="Relational MySQL"
+                     data-problem="Job seekers frequently jump across disconnected tools to search listings, apply, and maintain tailored resume versions."
+                     data-solution="Developed an integrated portal where applicants can browse vacancies, recruiters can post opportunities, and candidates can construct real-time resumes."
+                     data-flow="Client UI (HTML5/CSS3/JS) → PHP Backend Authentication & CRUD → Relational MySQL DB → Dynamic Resume PDF/Print View"
+                     data-metric1="Full CRUD Engine" data-metric2="PHP & MySQL" data-metric3="Resume Generator"
+                     data-github="https://github.com/TuSHar-Sawale"
                      data-img="./assets/job_portal.jpg">
               <div class="card-media">
                 <span class="card-overlay-badge">Full-Stack Web</span>
                 <span class="card-arrow-circle">↗</span>
-                <img src="./assets/job_portal.jpg" alt="Job Finder Portal with Resume Builder" loading="lazy">
+                <img src="./assets/job_portal.jpg" alt="Job Finder Portal with Dynamic Resume Builder" loading="lazy">
               </div>
               <div class="card-body">
                 <div class="card-meta-row">
@@ -1582,6 +1735,10 @@
                   <span class="pill-tag">JavaScript</span>
                   <span class="pill-tag">PHP</span>
                   <span class="pill-tag">MySQL</span>
+                </div>
+                <div class="card-actions-row">
+                  <span class="card-action-btn">Case Study ↗</span>
+                  <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="card-action-btn gh" onclick="event.stopPropagation()">GitHub ↗</a>
                 </div>
               </div>
             </article>
@@ -1699,72 +1856,71 @@
                         <span>Face Recognition Attendance</span>
                       </div>
                     </td>
-                    <td>Production AI Application</td>
+                    <td>Deployed AI Application</td>
                     <td>2026</td>
                     <td>OpenCV, React, Node.js, Express, Supabase PostgreSQL</td>
-                    <td><span class="badge-status featured">80% Time Saved</span></td>
+                    <td><span class="badge-status featured">Automated Detection</span></td>
                   </tr>
                   <tr class="archive-row">
                     <td>
                       <div class="archive-client">
                         <span class="archive-dot"></span>
-                        <span>Disease Prediction & Medical Cure</span>
+                        <span>Disease Prediction & Health Guidance</span>
                       </div>
                     </td>
                     <td>Machine Learning System</td>
                     <td>2025</td>
                     <td>Python, Flask, Decision Tree, Random Forest, Pandas</td>
-                    <td><span class="badge-status award">92% Accuracy</span></td>
+                    <td><span class="badge-status award">92% Test Accuracy</span></td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <!-- Technical Skills Matrix Grid -->
+            <!-- Technical Skills Matrix Grid (4-Tier Hierarchy) -->
             <div class="skills-summary-grid">
               <div class="skill-category-box">
-                <div class="skill-cat-title">Programming Languages</div>
-                <div class="skill-pills-wrap">
-                  <span class="skill-badge">Python</span>
-                  <span class="skill-badge">Java</span>
-                  <span class="skill-badge">PHP</span>
-                  <span class="skill-badge">JavaScript</span>
-                  <span class="skill-badge">SQL</span>
-                </div>
-              </div>
-
-              <div class="skill-category-box">
-                <div class="skill-cat-title">Frameworks & Web Tech</div>
+                <div class="skill-cat-title">Primary Development</div>
                 <div class="skill-pills-wrap">
                   <span class="skill-badge">React.js</span>
                   <span class="skill-badge">Node.js</span>
-                  <span class="skill-badge">Express.js</span>
-                  <span class="skill-badge">Flask</span>
+                  <span class="skill-badge">Python</span>
+                  <span class="skill-badge">JavaScript (ES6+)</span>
                   <span class="skill-badge">HTML5 & CSS3</span>
                 </div>
               </div>
 
               <div class="skill-category-box">
-                <div class="skill-cat-title">AI, Vision & Automation</div>
+                <div class="skill-cat-title">AI & Automation</div>
                 <div class="skill-pills-wrap">
-                  <span class="skill-badge">n8n</span>
-                  <span class="skill-badge">Zapier</span>
-                  <span class="skill-badge">Google Gemini API</span>
                   <span class="skill-badge">OpenCV</span>
                   <span class="skill-badge">Scikit-learn</span>
-                  <span class="skill-badge">Pandas / NumPy</span>
+                  <span class="skill-badge">n8n Workflows</span>
+                  <span class="skill-badge">Google Gemini API</span>
+                  <span class="skill-badge">Pandas & NumPy</span>
                 </div>
               </div>
 
               <div class="skill-category-box">
-                <div class="skill-cat-title">Databases & BI Tools</div>
+                <div class="skill-cat-title">Backend & Databases</div>
                 <div class="skill-pills-wrap">
+                  <span class="skill-badge">Express.js</span>
+                  <span class="skill-badge">Flask</span>
+                  <span class="skill-badge">PHP</span>
                   <span class="skill-badge">Supabase</span>
                   <span class="skill-badge">PostgreSQL</span>
                   <span class="skill-badge">MySQL</span>
+                </div>
+              </div>
+
+              <div class="skill-category-box">
+                <div class="skill-cat-title">Tools & Analytics</div>
+                <div class="skill-pills-wrap">
                   <span class="skill-badge">Power BI</span>
                   <span class="skill-badge">Tableau</span>
-                  <span class="skill-badge">Git & Postman</span>
+                  <span class="skill-badge">Git & GitHub</span>
+                  <span class="skill-badge">Postman</span>
+                  <span class="skill-badge">REST APIs</span>
                 </div>
               </div>
             </div>
@@ -1816,24 +1972,39 @@
           <!-- High-Impact CTA Banner -->
           <div class="cta-banner">
             <div class="cta-content">
-              <h3 class="cta-title">Looking for a Full-Stack & AI Automation Engineer?</h3>
+              <h3 class="cta-title">Looking for a Full-Stack Developer or AI Automation Engineer?</h3>
               <p class="cta-desc">
-                I am actively seeking software developer roles, engineering internships, and high-impact automation projects where I can build scalable systems and deliver measurable value.
+                I am an MCA graduate actively seeking full-stack developer roles, engineering opportunities, and automation projects where I can build dependable systems and solve real business problems.
               </p>
             </div>
             <div class="cta-action">
-              <a href="mailto:tusharsawale49@gmail.com" class="btn-pill-orange">
-                <span>Email Tushar</span>
+              <a href="./assets/Tushar_Sawale_Resume.pdf" target="_blank" download="Tushar_Sawale_Resume.pdf" class="btn-pill-orange">
+                <span>Download Resume 📄</span>
                 <span class="icon-circle">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
                   </svg>
                 </span>
               </a>
-              <a href="https://linkedin.com/in/tushar-sawale" target="_blank" rel="noopener" class="btn-pill-white">
-                <span>LinkedIn Profile ↗</span>
-              </a>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a href="mailto:tusharsawale49@gmail.com" class="btn-pill-white">
+                  <span>Email Tushar</span>
+                  <span class="icon-circle">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </span>
+                </a>
+                <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="btn-pill-subtle">
+                  <span>GitHub ↗</span>
+                </a>
+                <a href="https://linkedin.com/in/tushar-sawale" target="_blank" rel="noopener" class="btn-pill-subtle">
+                  <span>LinkedIn ↗</span>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -1851,7 +2022,7 @@
               <span>Tushar Sawale</span>
               <span class="logo-dot"></span>
             </a>
-            <p class="footer-tagline">Full-Stack Software Developer & AI Automation Engineer based in Pune, India. Specializing in React, Python, Node.js, and autonomous n8n workflows.</p>
+            <p class="footer-tagline">Full-Stack Developer & AI Automation Engineer based in Pune, India. MCA Graduate building dependable web applications, computer vision tools, and event-driven automation workflows.</p>
             <div style="margin-top: 18px; font-size: 0.86rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 6px;">
               <span>📍 Pune, Maharashtra, India</span>
               <span>📧 <a href="mailto:tusharsawale49@gmail.com" style="color: #ffffff; text-decoration: none;">tusharsawale49@gmail.com</a></span>
@@ -1867,6 +2038,7 @@
                 <li><a href="projects.html">Projects (5)</a></li>
                 <li><a href="index.html#workflow">Engineering Process</a></li>
                 <li><a href="index.html#palette">Tech Architecture</a></li>
+                <li style="margin-top:4px;"><a href="./assets/Tushar_Sawale_Resume.pdf" target="_blank" download="Tushar_Sawale_Resume.pdf" style="color:var(--accent-orange); font-weight:600;">Download Resume 📄</a></li>
               </ul>
             </div>
             <div class="footer-col">
@@ -1881,6 +2053,7 @@
             <div class="footer-col">
               <span class="footer-col-title">Connect</span>
               <ul>
+                <li><a href="./assets/Tushar_Sawale_Resume.pdf" target="_blank">Resume PDF ↗</a></li>
                 <li><a href="https://linkedin.com/in/tushar-sawale" target="_blank" rel="noopener">LinkedIn ↗</a></li>
                 <li><a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener">GitHub ↗</a></li>
                 <li><a href="mailto:tusharsawale49@gmail.com">Email Me ↗</a></li>
@@ -1915,22 +2088,38 @@
         <div class="modal-category" id="modalCategory">Category</div>
         <h3 class="modal-title" id="modalTitle">Project Title</h3>
         <p class="modal-desc" id="modalDesc">Detailed narrative description of the project.</p>
-        <div class="modal-metrics-grid">
+
+        <div class="modal-section-block">
+          <div class="modal-section-title">Problem Statement</div>
+          <p class="modal-section-content" id="modalProblem">—</p>
+        </div>
+
+        <div class="modal-section-block">
+          <div class="modal-section-title">Technical Solution</div>
+          <p class="modal-section-content" id="modalSolution">—</p>
+        </div>
+
+        <div class="modal-section-block">
+          <div class="modal-section-title">Architecture & Data Flow</div>
+          <div class="modal-flow-code" id="modalFlow">—</div>
+        </div>
+
+        <div class="modal-metrics-grid" style="margin-top: 18px;">
           <div>
             <div class="modal-metric-val" id="metricVal1">—</div>
-            <div class="modal-metric-key">Key Metric</div>
+            <div class="modal-metric-key">Key Metric / Result</div>
           </div>
           <div>
             <div class="modal-metric-val" id="metricVal2">—</div>
-            <div class="modal-metric-key">Architecture / AI</div>
+            <div class="modal-metric-key">Core Technology</div>
           </div>
           <div>
             <div class="modal-metric-val" id="metricVal3">—</div>
-            <div class="modal-metric-key">Tech / Recognition</div>
+            <div class="modal-metric-key">Integration / API</div>
           </div>
         </div>
-        <div style="display:flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; flex-wrap:wrap; gap:16px;">
-          <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="btn-pill-white" style="font-size:0.82rem; padding:8px 18px;">
+        <div style="display:flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; margin-top: 16px; flex-wrap:wrap; gap:16px;">
+          <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" id="modalGhLink" class="btn-pill-white" style="font-size:0.82rem; padding:8px 18px;">
             <span>View Source on GitHub ↗</span>
           </a>
           <button class="btn-pill-orange" id="modalBottomClose">
@@ -2027,6 +2216,10 @@
       const modalTitle = document.getElementById('modalTitle');
       const modalCategory = document.getElementById('modalCategory');
       const modalDesc = document.getElementById('modalDesc');
+      const modalProblem = document.getElementById('modalProblem');
+      const modalSolution = document.getElementById('modalSolution');
+      const modalFlow = document.getElementById('modalFlow');
+      const modalGhLink = document.getElementById('modalGhLink');
       const metricVal1 = document.getElementById('metricVal1');
       const metricVal2 = document.getElementById('metricVal2');
       const metricVal3 = document.getElementById('metricVal3');
@@ -2053,6 +2246,10 @@
           modalTitle.textContent = card.getAttribute('data-title');
           modalCategory.textContent = card.getAttribute('data-cat-label');
           modalDesc.textContent = card.getAttribute('data-desc');
+          if (modalProblem) modalProblem.textContent = card.getAttribute('data-problem') || '—';
+          if (modalSolution) modalSolution.textContent = card.getAttribute('data-solution') || '—';
+          if (modalFlow) modalFlow.textContent = card.getAttribute('data-flow') || '—';
+          if (modalGhLink) modalGhLink.href = card.getAttribute('data-github') || 'https://github.com/TuSHar-Sawale';
           metricVal1.textContent = card.getAttribute('data-metric1');
           metricVal2.textContent = card.getAttribute('data-metric2');
           metricVal3.textContent = card.getAttribute('data-metric3');

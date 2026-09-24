@@ -221,6 +221,125 @@
       transform: translateX(3px);
     }
 
+    .btn-pill-subtle {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.07);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 9999px;
+      backdrop-filter: blur(12px);
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-pill-subtle:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+      color: #ffffff;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .status-pulse-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #10b981;
+      margin-right: 8px;
+      animation: pulse-green 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-green {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.85); }
+    }
+
+    .nav-resume-link {
+      color: var(--accent-orange) !important;
+      font-weight: 600 !important;
+    }
+
+    .showcase-card-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .showcase-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 4px;
+    }
+
+    .showcase-cat {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent-orange);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .showcase-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0;
+    }
+
+    .showcase-links {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .showcase-link-btn {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 5px 12px;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .showcase-link-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+    }
+
+    .showcase-link-btn.gh {
+      color: var(--accent-orange);
+      border-color: rgba(250, 90, 30, 0.3);
+      background: rgba(250, 90, 30, 0.08);
+    }
+
+    .showcase-link-btn.gh:hover {
+      background: rgba(250, 90, 30, 0.2);
+      border-color: var(--accent-orange);
+    }
+
     /* Blue Section Badges */
     .section-badge-blue {
       display: inline-flex;
@@ -1120,6 +1239,7 @@
             <li><a href="projects.html">Projects</a></li>
             <li><a href="#workflow">Workflow</a></li>
             <li><a href="#palette">Tech Stack</a></li>
+            <li><a href="./assets/Tushar_Sawale_Resume.pdf" target="_blank" rel="noopener" class="nav-resume-link">Resume ↗</a></li>
           </ul>
           <a href="#contact" class="btn-pill-white">
             <span>Get in touch</span>
@@ -1141,12 +1261,41 @@
       <section class="hero-section" id="home">
         <div class="hero-main-grid">
           <div class="hero-left">
-            <div class="hero-eyebrow">Hey, I'm</div>
+            <div class="hero-eyebrow">
+              <span class="status-pulse-dot"></span> Open to Full-Stack & Python Developer Roles
+            </div>
             <h1 class="hero-title">Tushar<br>Sawale</h1>
           </div>
           <div class="hero-right">
-            <h2 class="hero-secondary-title">Full-Stack Developer &<br>AI Automation Engineer.</h2>
-            <p class="hero-desc">MCA scholar specializing in React, Node.js, Python ML, and autonomous n8n workflows. Building scalable, data-driven software that solves real-world challenges.</p>
+            <h2 class="hero-secondary-title">Full-Stack Developer |<br>AI & Automation.</h2>
+            <p class="hero-desc">MCA graduate and Full-Stack Developer focused on React, Node.js, Python, and AI automation. I build web applications, computer vision systems, ML solutions, and n8n workflows that automate real-world tasks.</p>
+            <div class="hero-cta-group">
+              <a href="projects.html" class="btn-pill-orange">
+                <span>View Projects</span>
+                <span class="icon-circle">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </span>
+              </a>
+              <a href="./assets/Tushar_Sawale_Resume.pdf" target="_blank" download="Tushar_Sawale_Resume.pdf" class="btn-pill-white">
+                <span>Download Resume</span>
+                <span class="icon-circle">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                </span>
+              </a>
+              <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="btn-pill-subtle">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                <span>GitHub ↗</span>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -1154,7 +1303,7 @@
         <div class="services-bar">
           <div class="service-item">
             <span class="service-num">// 01</span>
-            <span class="service-name">Full-Stack Web Dev</span>
+            <span class="service-name">Full-Stack Development</span>
           </div>
           <div class="service-item">
             <span class="service-num">// 02</span>
@@ -1166,7 +1315,7 @@
           </div>
           <div class="service-item">
             <span class="service-num">// 04</span>
-            <span class="service-name">Data Analytics & BI</span>
+            <span class="service-name">Data & Analytics</span>
           </div>
         </div>
       </section>
@@ -1178,13 +1327,13 @@
             Core Tech Stack &<br>EY Credentials
           </div>
           <div class="brands-list">
-            <!-- EY Certified -->
+            <!-- EY Credentials -->
             <div class="brand-logo">
               <svg viewBox="0 0 24 24" fill="none">
                 <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" stroke="currentColor" stroke-width="2.2" />
                 <circle cx="12" cy="12" r="3" fill="var(--accent-orange)" />
               </svg>
-              <span>EY Certified</span>
+              <span>EY Credentials</span>
             </div>
             <!-- React & Node.js -->
             <div class="brand-logo">
@@ -1227,14 +1376,15 @@
           </div>
           <div class="behind-right">
             <p class="behind-desc">
-              From real-time computer vision attendance systems to predictive healthcare machine learning models and autonomous n8n workflows that eliminate manual friction.
+              From real-time computer vision attendance systems to predictive healthcare machine learning models and automated n8n workflows that eliminate manual friction.
             </p>
             <div class="behind-action-row">
               <div class="behind-action-text">
-                Ready to Accelerate Your<br>Technical Initiatives?
+                Let's Build Something<br>
+                <span style="font-size: 0.92rem; font-weight: 400; color: var(--text-muted);">Open to software development, full-stack, AI/ML, and automation opportunities.</span>
               </div>
               <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
-                <a href="projects.html" class="btn-pill-white">
+                <a href="projects.html" class="btn-pill-orange">
                   <span>View all 5 projects</span>
                   <span class="icon-circle">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1243,14 +1393,18 @@
                     </svg>
                   </span>
                 </a>
-                <a href="#contact" class="btn-pill-orange">
-                  <span>Get in touch</span>
+                <a href="./assets/Tushar_Sawale_Resume.pdf" target="_blank" download="Tushar_Sawale_Resume.pdf" class="btn-pill-white">
+                  <span>Download Resume</span>
                   <span class="icon-circle">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                      <polyline points="12 5 19 12 12 19"></polyline>
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="7 10 12 15 17 10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
                     </svg>
                   </span>
+                </a>
+                <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="btn-pill-subtle">
+                  <span>GitHub ↗</span>
                 </a>
               </div>
             </div>
@@ -1259,15 +1413,56 @@
 
         <!-- 3 Showcase Cards Grid -->
         <div class="showcase-grid">
-          <a href="projects.html" class="showcase-card" style="text-decoration:none; display:block;">
-            <img src="./assets/face_recognition.jpg" alt="Face Recognition Attendance System (OpenCV & Supabase)" loading="lazy">
-          </a>
-          <a href="projects.html" class="showcase-card" style="text-decoration:none; display:block;">
-            <img src="./assets/disease_prediction.jpg" alt="Disease Prediction and Medical Cure (Python & ML)" loading="lazy">
-          </a>
-          <a href="projects.html" class="showcase-card" style="text-decoration:none; display:block;">
-            <img src="./assets/support_ticket.jpg" alt="AI Support Ticket Automation System (n8n & Gemini AI)" loading="lazy">
-          </a>
+          <!-- Card 1 -->
+          <div class="showcase-card-wrap">
+            <a href="projects.html" class="showcase-card" style="text-decoration:none; display:block;">
+              <img src="./assets/face_recognition.jpg" alt="Face Recognition Attendance System (OpenCV & Supabase)" loading="lazy">
+            </a>
+            <div class="showcase-card-footer">
+              <div>
+                <span class="showcase-cat">AI & Computer Vision</span>
+                <h4 class="showcase-name">Face Recognition Attendance</h4>
+              </div>
+              <div class="showcase-links">
+                <a href="projects.html" class="showcase-link-btn">Case Study ↗</a>
+                <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="showcase-link-btn gh">GitHub ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="showcase-card-wrap">
+            <a href="projects.html" class="showcase-card" style="text-decoration:none; display:block;">
+              <img src="./assets/disease_prediction.jpg" alt="Disease Prediction & Health Guidance (Python & ML)" loading="lazy">
+            </a>
+            <div class="showcase-card-footer">
+              <div>
+                <span class="showcase-cat">Machine Learning</span>
+                <h4 class="showcase-name">Disease Prediction & Guidance</h4>
+              </div>
+              <div class="showcase-links">
+                <a href="projects.html" class="showcase-link-btn">Case Study ↗</a>
+                <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="showcase-link-btn gh">GitHub ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="showcase-card-wrap">
+            <a href="projects.html" class="showcase-card" style="text-decoration:none; display:block;">
+              <img src="./assets/support_ticket.jpg" alt="AI Support Ticket Automation System (n8n & Gemini AI)" loading="lazy">
+            </a>
+            <div class="showcase-card-footer">
+              <div>
+                <span class="showcase-cat">Workflow Automation</span>
+                <h4 class="showcase-name">AI Support Ticket Automation</h4>
+              </div>
+              <div class="showcase-links">
+                <a href="projects.html" class="showcase-link-btn">Case Study ↗</a>
+                <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="showcase-link-btn gh">GitHub ↗</a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1361,7 +1556,7 @@
 
         <div class="workflow-footer-note">
           <span class="dot"></span>
-          <span>Combining full-stack engineering with automation pipelines enables delivering production-grade web systems on time with measurable business velocity.</span>
+          <span>Combining full-stack engineering with automation pipelines enables delivering robust web applications, AI models, and efficient workflows.</span>
         </div>
       </section>
 
@@ -1374,7 +1569,7 @@
 
         <div class="palette-header">
           <h2 class="palette-title">
-            A high-velocity engineering stack designed for intelligent AI systems, autonomous pipelines, and resilient web platforms.
+            A focused engineering stack designed for full-stack web applications, AI models, automated workflows, and data analytics.
           </h2>
         </div>
 
@@ -1393,7 +1588,7 @@
               <!-- Segment 2: AI & Computer Vision (Purple Violet #a855f7) -->
               <path d="M 260 160 A 100 100 0 0 1 160 260" fill="none" stroke="#a855f7" stroke-width="16" stroke-linecap="round" />
 
-              <!-- Segment 3: Autonomous Automation (Electric Orange #fa5a1e) -->
+              <!-- Segment 3: Workflow Automation (Electric Orange #fa5a1e) -->
               <path d="M 160 260 A 100 100 0 0 1 60 160" fill="none" stroke="#fa5a1e" stroke-width="18" stroke-linecap="round" />
 
               <!-- Segment 4: Cloud & SQL Intel (Emerald Green #10b981) -->
@@ -1419,21 +1614,21 @@
             <div class="color-card-header">
               <span class="color-card-title">
                 <span class="color-preview-dot" style="background: #38bdf8; box-shadow: 0 0 10px #38bdf8;"></span>
-                Full-Stack Web Dev
+                Primary & Full-Stack Web
               </span>
               <span class="color-card-close">✕</span>
             </div>
-            <p class="color-card-desc">High-velocity web apps built with React, modular JavaScript, Node.js/Express REST APIs, and component-driven architecture.</p>
+            <p class="color-card-desc">Full-stack web applications built with React, modular JavaScript, Node.js/Express REST APIs, PHP, and relational databases.</p>
             <table class="color-table">
               <tr>
-                <td>STACK</td>
-                <td>React • Node.js • Express</td>
-                <td><span style="color: #38bdf8;">Production</span></td>
+                <td>CORE</td>
+                <td>React • Node.js • Express • PHP</td>
+                <td><span style="color: #38bdf8;">Primary</span></td>
               </tr>
               <tr>
-                <td>FRONTEND</td>
-                <td>HTML5 • CSS3 • Tailwind</td>
-                <td><span style="color: var(--text-dim);">Modular UI</span></td>
+                <td>LANGUAGES</td>
+                <td>JavaScript • Python • Java • SQL</td>
+                <td><span style="color: var(--text-dim);">Core</span></td>
               </tr>
             </table>
           </div>
@@ -1447,22 +1642,22 @@
               </span>
               <span class="color-card-close">✕</span>
             </div>
-            <p class="color-card-desc">Intelligent systems powered by Python, OpenCV facial detection & recognition algorithms, and Scikit-learn predictive ML models.</p>
+            <p class="color-card-desc">Computer vision and ML models powered by Python, OpenCV face detection/recognition, and Scikit-learn predictive algorithms.</p>
             <table class="color-table">
               <tr>
                 <td>MODELS</td>
                 <td>Python • OpenCV • Scikit</td>
-                <td><span style="color: #a855f7;">92%+ Acc</span></td>
+                <td><span style="color: #a855f7;">92% Test Acc</span></td>
               </tr>
               <tr>
-                <td>VISION</td>
-                <td>Facial Recognition • ML</td>
-                <td><span style="color: var(--text-dim);">Real-Time</span></td>
+                <td>DATA</td>
+                <td>Pandas • NumPy • Matplotlib</td>
+                <td><span style="color: var(--text-dim);">Analysis</span></td>
               </tr>
             </table>
           </div>
 
-          <!-- Floating Inspector Card 3: Autonomous Automation (Bottom Left) -->
+          <!-- Floating Inspector Card 3: Workflow Automation (Bottom Left) -->
           <div class="color-card card-electric-blue">
             <div class="color-card-header">
               <span class="color-card-title">
@@ -1471,41 +1666,41 @@
               </span>
               <span class="color-card-close">✕</span>
             </div>
-            <p class="color-card-desc">Self-healing event-driven pipelines, multi-step cloud webhooks, and conversational AI bots orchestrating n8n with Gemini AI and Telegram.</p>
+            <p class="color-card-desc">Event-driven automation pipelines using n8n, webhooks, Gemini AI, and third-party APIs for automated email support and chatbot messaging.</p>
             <table class="color-table">
               <tr>
-                <td>ENGINE</td>
+                <td>AUTOMATION</td>
                 <td>n8n • Webhooks • Gemini</td>
-                <td><span style="color: var(--accent-orange);">Autonomous</span></td>
+                <td><span style="color: var(--accent-orange);">Automated</span></td>
               </tr>
               <tr>
-                <td>PIPELINE</td>
-                <td>REST APIs • JSON Flow</td>
-                <td><span style="color: var(--text-dim);">24/7 Cloud</span></td>
+                <td>INTEGRATION</td>
+                <td>Gmail API • Telegram Bot API • REST</td>
+                <td><span style="color: var(--text-dim);">Pipelines</span></td>
               </tr>
             </table>
           </div>
 
-          <!-- Floating Inspector Card 4: Database & Cloud Intel (Bottom Right) -->
+          <!-- Floating Inspector Card 4: Databases & Tools (Bottom Right) -->
           <div class="color-card card-deep-background">
             <div class="color-card-header">
               <span class="color-card-title">
                 <span class="color-preview-dot" style="background: #10b981; box-shadow: 0 0 10px #10b981;"></span>
-                Data, Cloud & BI
+                Databases & Tools
               </span>
               <span class="color-card-close">✕</span>
             </div>
-            <p class="color-card-desc">Production PostgreSQL persistence with Supabase authentication & storage, paired with EY-certified predictive analytics & Power BI dashboards.</p>
+            <p class="color-card-desc">Relational database design with PostgreSQL & MySQL, Supabase authentication & cloud storage, and EY credentials in Tableau & Power BI.</p>
             <table class="color-table">
               <tr>
-                <td>STORAGE</td>
-                <td>PostgreSQL • Supabase • SQL</td>
-                <td><span style="color: #10b981;">Cloud Auth</span></td>
+                <td>DATABASES</td>
+                <td>PostgreSQL • Supabase • MySQL</td>
+                <td><span style="color: #10b981;">Relational</span></td>
               </tr>
               <tr>
                 <td>ANALYTICS</td>
-                <td>EY Power BI • Tableau</td>
-                <td><span style="color: var(--text-dim);">Certified</span></td>
+                <td>EY Power BI • Tableau • Git</td>
+                <td><span style="color: var(--text-dim);">Credentials</span></td>
               </tr>
             </table>
           </div>
@@ -1524,7 +1719,7 @@
               <span>Tushar Sawale</span>
               <span style="display:inline-block; width:6px; height:6px; background:var(--accent-orange); border-radius:50%; margin-left:6px;"></span>
             </a>
-            <p class="footer-tagline">Full-Stack Software Developer & AI Automation Engineer based in Pune, India. Specializing in React, Python, Node.js, and autonomous n8n workflows.</p>
+            <p class="footer-tagline">Full-Stack Developer focused on React, Node.js, Python, and AI automation. MCA graduate based in Pune, India.</p>
             <div style="margin-top: 18px; font-size: 0.86rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 6px;">
               <span>📍 Pune, Maharashtra, India</span>
               <span>📧 <a href="mailto:tusharsawale49@gmail.com" style="color: #ffffff; text-decoration: none;">tusharsawale49@gmail.com</a></span>
@@ -1540,6 +1735,7 @@
                 <li><a href="projects.html">Projects (5)</a></li>
                 <li><a href="#workflow">Engineering Process</a></li>
                 <li><a href="#palette">Tech Architecture</a></li>
+                <li><a href="./assets/Tushar_Sawale_Resume.pdf" target="_blank" download="Tushar_Sawale_Resume.pdf" style="color:var(--accent-orange); font-weight:600;">Download Resume 📄</a></li>
               </ul>
             </div>
             <div class="footer-col">
@@ -1560,7 +1756,6 @@
                 <li><a href="tel:+917028182891">Call / WhatsApp ↗</a></li>
               </ul>
             </div>
-          </div>
         </div>
 
         <div class="footer-bottom">
