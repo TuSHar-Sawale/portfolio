@@ -1,0 +1,1821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tushar Sawale — Full-Stack Developer & AI Automation Engineer</title>
+  
+  <!-- Modern Geometric & Editorial Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --accent-orange: #fa5a1e;
+      --accent-orange-hover: #ff7038;
+      --accent-blue: #3271f7;
+      --bg-dark: #0b0709;
+      --card-bg: rgba(18, 17, 24, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-main: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.65);
+      --text-dim: rgba(255, 255, 255, 0.45);
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Lenis smooth scrolling */
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+
+    /* Minimal dark scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2b2529;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #473e44;
+    }
+
+    /* Fixed full-screen canvas backdrop */
+    #canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 0;
+      pointer-events: none;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: auto;
+    }
+
+    /* Subtle atmospheric vignette for text clarity */
+    .canvas-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(circle at 75% 45%, rgba(250, 90, 30, 0.08) 0%, transparent 60%),
+                  radial-gradient(circle at 20% 80%, rgba(50, 113, 247, 0.05) 0%, transparent 50%),
+                  linear-gradient(to right, rgba(11, 7, 9, 0.85) 0%, rgba(11, 7, 9, 0.3) 45%, rgba(11, 7, 9, 0.65) 100%),
+                  linear-gradient(to bottom, rgba(11, 7, 9, 0.45) 0%, transparent 20%, transparent 80%, rgba(11, 7, 9, 0.95) 100%);
+    }
+
+    /* Page content wrapper */
+    .page-wrapper {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+    }
+
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ==========================================================================
+       NAVIGATION BAR
+       ========================================================================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+    }
+
+    .header.scrolled {
+      background: rgba(11, 7, 9, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 40px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      line-height: 1;
+      margin-left: 36px;
+    }
+
+    .logo-img {
+      height: 38px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .logo:hover .logo-img {
+      transform: scale(1.04);
+      opacity: 0.92;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    /* Pill Button (White with Orange Arrow Circle) */
+    .btn-pill-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #ffffff;
+      color: #0b0709;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 6px 6px 6px 20px;
+      border-radius: 9999px;
+      transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.25s ease;
+    }
+
+    .btn-pill-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-pill-white .icon-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--accent-orange);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s ease;
+    }
+
+    .btn-pill-white:hover .icon-circle {
+      transform: translateX(3px);
+    }
+
+    /* Blue Section Badges */
+    .section-badge-blue {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(50, 113, 247, 0.12);
+      border: 1px solid rgba(50, 113, 247, 0.35);
+      color: #ffffff;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .section-badge-blue .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      box-shadow: 0 0 10px var(--accent-blue);
+    }
+
+    .italic-serif {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      color: #ffffff;
+    }
+
+    /* ==========================================================================
+       SECTION 1: HERO
+       ========================================================================== */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-top: 140px;
+      padding-bottom: 60px;
+      position: relative;
+    }
+
+    .hero-main-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      align-items: center;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .hero-left {
+      max-width: 680px;
+    }
+
+    .hero-eyebrow {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-title {
+      font-size: clamp(3.8rem, 7.5vw, 6.8rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: #ffffff;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-right {
+      max-width: 480px;
+      justify-self: end;
+      padding-right: 20px;
+    }
+
+    .hero-secondary-title {
+      font-size: clamp(1.4rem, 2.2vw, 2.1rem);
+      font-weight: 700;
+      line-height: 1.25;
+      color: #ffffff;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-desc {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* 4-Item Service Row */
+    .services-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      padding-top: 60px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 80px;
+    }
+
+    .service-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .service-num {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent-orange);
+      letter-spacing: 0.05em;
+    }
+
+    .service-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    /* ==========================================================================
+       SECTION 2: TRUSTED BRANDS STRIP
+       ========================================================================== */
+    .brands-section {
+      padding: 40px 0 100px 0;
+    }
+
+    .brands-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 32px;
+      border: 1px solid var(--card-border);
+      padding: 36px 48px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 48px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .brands-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      line-height: 1.35;
+      white-space: nowrap;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      padding-right: 36px;
+    }
+
+    .brands-list {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      opacity: 0.85;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .brand-logo:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    .brand-logo svg {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+
+    /* ==========================================================================
+       SECTION 3: BEHIND THE DESIGNS
+       ========================================================================== */
+    .behind-section {
+      padding: 80px 0 140px 0;
+    }
+
+    .behind-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: flex-end;
+      margin-bottom: 70px;
+    }
+
+    .behind-left {
+      max-width: 600px;
+    }
+
+    .section-eyebrow {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-orange);
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .section-title {
+      font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+    }
+
+    .behind-right {
+      max-width: 520px;
+      justify-self: end;
+    }
+
+    .behind-desc {
+      font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+      font-weight: 600;
+      line-height: 1.45;
+      color: #ffffff;
+      margin-bottom: 36px;
+      letter-spacing: -0.01em;
+    }
+
+    .behind-action-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .behind-action-text {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+
+    /* Pill Button (Orange with White Arrow Circle) */
+    .btn-pill-orange {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--accent-orange);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 6px 6px 6px 22px;
+      border-radius: 9999px;
+      box-shadow: 0 6px 24px rgba(250, 90, 30, 0.35);
+      transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), background 0.25s ease, box-shadow 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .btn-pill-orange:hover {
+      background: var(--accent-orange-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(250, 90, 30, 0.5);
+    }
+
+    .btn-pill-orange .icon-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #ffffff;
+      color: var(--accent-orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s ease;
+    }
+
+    .btn-pill-orange:hover .icon-circle {
+      transform: translateX(3px);
+    }
+
+    /* Showcase 3-Card Grid */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .showcase-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #f8faff;
+      border: 1px solid var(--card-border);
+      aspect-ratio: 1024 / 572;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+      transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+
+    .showcase-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.55);
+      border-color: rgba(250, 90, 30, 0.4);
+    }
+
+    .showcase-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    .showcase-card:hover img {
+      opacity: 0.96;
+    }
+
+    /* ==========================================================================
+       SECTION 4: WORKFLOW PLAN
+       ========================================================================== */
+    .workflow-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .workflow-header {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 50px;
+      align-items: flex-start;
+      margin-bottom: 50px;
+    }
+
+    .workflow-title {
+      font-size: clamp(2rem, 3.2vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+    }
+
+    .workflow-desc {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+      max-width: 500px;
+      justify-self: end;
+    }
+
+    /* Timeline Stepper Container */
+    .timeline-container {
+      position: relative;
+      margin: 40px 0;
+      min-height: 340px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 40px 0;
+    }
+
+    /* Vertical Dashed Guide Lines */
+    .timeline-guides {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      pointer-events: none;
+    }
+
+    .guide-line {
+      border-right: 1px dashed rgba(255, 255, 255, 0.1);
+      height: 100%;
+    }
+
+    .guide-line:last-child {
+      border-right: none;
+    }
+
+    /* Floating Capsule Steps */
+    .timeline-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      column-gap: 20px;
+      min-height: 280px;
+    }
+
+    .timeline-col {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      padding: 0 10px;
+    }
+
+    .timeline-col-1 {
+      justify-content: flex-start;
+    }
+
+    .timeline-col-2 {
+      justify-content: center;
+      padding-top: 40px;
+    }
+
+    .timeline-col-3 {
+      justify-content: center;
+      padding-top: 80px;
+    }
+
+    .timeline-col-4 {
+      justify-content: flex-end;
+      padding-top: 120px;
+    }
+
+    .timeline-capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(18, 17, 24, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      padding: 7px 7px 7px 16px;
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 500;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+      width: fit-content;
+    }
+
+    .timeline-capsule:hover {
+      transform: translateY(-4px) scale(1.02);
+      border-color: rgba(50, 113, 247, 0.5);
+      box-shadow: 0 12px 35px rgba(50, 113, 247, 0.25);
+    }
+
+    .capsule-icon {
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      opacity: 0.8;
+    }
+
+    .capsule-label {
+      white-space: nowrap;
+    }
+
+    .duration-tag {
+      background: #ffffff;
+      color: #0b0709;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      letter-spacing: -0.01em;
+    }
+
+    .workflow-footer-note {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      max-width: 780px;
+      margin-top: 24px;
+    }
+
+    .workflow-footer-note .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      flex-shrink: 0;
+      box-shadow: 0 0 8px var(--accent-blue);
+    }
+
+    /* ==========================================================================
+       SECTION 5: COLOR PALETTE
+       ========================================================================== */
+    .palette-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 100px 0 60px 0;
+      position: relative;
+    }
+
+    .palette-header {
+      max-width: 680px;
+      margin-bottom: 40px;
+    }
+
+    .palette-title {
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+    }
+
+    /* Palette Stage with Radial Wheel & Floating Glass Cards */
+    .palette-stage {
+      position: relative;
+      width: 100%;
+      min-height: 590px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 15px;
+    }
+
+    .color-wheel-wrapper {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .color-wheel-svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-45deg);
+    }
+
+    /* Floating Color Cards */
+    .color-card {
+      position: absolute;
+      background: rgba(18, 17, 24, 0.82);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 20px 22px;
+      width: 295px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+      z-index: 5;
+    }
+
+    .color-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 255, 255, 0.28);
+      box-shadow: 0 26px 65px rgba(0, 0, 0, 0.8);
+    }
+
+    .card-soft-white {
+      top: 15px;
+      right: 4%;
+    }
+
+    .card-dark-accent {
+      top: 15px;
+      left: 4%;
+    }
+
+    .card-electric-blue {
+      bottom: 15px;
+      left: 4%;
+    }
+
+    .card-deep-background {
+      bottom: 15px;
+      right: 4%;
+    }
+
+    .color-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .color-card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      letter-spacing: -0.01em;
+    }
+
+    .color-preview-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .color-card-close {
+      color: rgba(255, 255, 255, 0.35);
+      font-size: 0.9rem;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 6px;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+
+    .color-card-close:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .color-card-desc {
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .color-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.76rem;
+    }
+
+    .color-table tr {
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .color-table td {
+      padding: 7px 0;
+      color: rgba(255, 255, 255, 0.88);
+      vertical-align: middle;
+    }
+
+    .color-table td:first-child {
+      font-size: 0.69rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      width: 25%;
+    }
+
+    .color-table td:nth-child(2) {
+      font-family: var(--font-family);
+      font-weight: 600;
+      color: #ffffff;
+      font-size: 0.77rem;
+    }
+
+    .color-table td:last-child {
+      text-align: right;
+      font-size: 0.71rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* ==========================================================================
+       SECTION 6: COMPLETE FOOTER (SCROLL END ANCHOR)
+       ========================================================================== */
+    .footer {
+      position: relative;
+      z-index: 10;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(11, 7, 9, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 70px 0 36px 0;
+      margin-top: 40px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 2fr;
+      gap: 60px;
+      margin-bottom: 50px;
+    }
+
+    .footer-brand .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .footer-tagline {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 400px;
+    }
+
+    .footer-nav-groups {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .footer-col-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-col ul a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s ease, transform 0.2s ease;
+      display: inline-block;
+    }
+
+    .footer-col ul a:hover {
+      color: #ffffff;
+      transform: translateX(3px);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .back-to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s ease;
+    }
+
+    .back-to-top:hover {
+      color: #ffffff;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE DESIGN
+       ========================================================================== */
+    @media (max-width: 1200px) {
+      .card-soft-white { right: 0; }
+      .card-dark-accent { left: 0; }
+      .card-electric-blue { left: 2%; }
+      .card-deep-background { right: 2%; }
+    }
+
+    @media (max-width: 1024px) {
+      .hero-main-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero-right {
+        justify-self: start;
+        padding-right: 0;
+      }
+      .services-bar {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+      .behind-header, .workflow-header {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .behind-right, .workflow-desc {
+        justify-self: start;
+      }
+      .brands-card {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+      }
+      .brands-label {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-right: 0;
+        padding-bottom: 20px;
+      }
+      .palette-stage {
+        flex-direction: column;
+        gap: 40px;
+      }
+      .color-card {
+        position: static;
+        width: 100%;
+        max-width: 440px;
+      }
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 24px;
+      }
+      .header-inner {
+        padding: 16px 20px;
+      }
+      .logo {
+        margin-left: 0;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hero-title {
+        font-size: 3.2rem;
+      }
+      .services-bar {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .showcase-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .behind-action-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .timeline-guides {
+        display: none;
+      }
+      .timeline-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .timeline-col {
+        padding: 0;
+      }
+      .timeline-col-1, .timeline-col-2, .timeline-col-3, .timeline-col-4 {
+        padding-top: 0;
+      }
+      .footer-nav-groups {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed 3D Scroll Canvas Backdrop -->
+  <canvas id="canvas"></canvas>
+  <div class="canvas-overlay"></div>
+
+  <!-- Page Content Overlays -->
+  <div class="page-wrapper">
+
+    <!-- Header Navigation -->
+    <header class="header" id="header">
+      <div class="container header-inner">
+        <a href="#home" class="logo" aria-label="Tushar Sawale">
+          <img src="./assets/logo.png" alt="Tushar" class="logo-img">
+        </a>
+        <div class="nav-actions">
+          <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="#workflow">Workflow</a></li>
+            <li><a href="#palette">Tech Stack</a></li>
+          </ul>
+          <a href="#contact" class="btn-pill-white">
+            <span>Get in touch</span>
+            <span class="icon-circle">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="container">
+
+      <!-- SECTION 1: HERO -->
+      <section class="hero-section" id="home">
+        <div class="hero-main-grid">
+          <div class="hero-left">
+            <div class="hero-eyebrow">Hey, I'm</div>
+            <h1 class="hero-title">Tushar<br>Sawale</h1>
+          </div>
+          <div class="hero-right">
+            <h2 class="hero-secondary-title">Full-Stack Developer &<br>AI Automation Engineer.</h2>
+            <p class="hero-desc">MCA scholar specializing in React, Node.js, Python ML, and autonomous n8n workflows. Building scalable, data-driven software that solves real-world challenges.</p>
+          </div>
+        </div>
+
+        <!-- 4-Column Services Grid -->
+        <div class="services-bar">
+          <div class="service-item">
+            <span class="service-num">// 01</span>
+            <span class="service-name">Full-Stack Web Dev</span>
+          </div>
+          <div class="service-item">
+            <span class="service-num">// 02</span>
+            <span class="service-name">AI & Computer Vision</span>
+          </div>
+          <div class="service-item">
+            <span class="service-num">// 03</span>
+            <span class="service-name">Workflow Automation</span>
+          </div>
+          <div class="service-item">
+            <span class="service-num">// 04</span>
+            <span class="service-name">Data Analytics & BI</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: TRUSTED BRANDS & CORE STACK STRIP -->
+      <section class="brands-section" id="about">
+        <div class="brands-card">
+          <div class="brands-label">
+            Core Tech Stack &<br>EY Credentials
+          </div>
+          <div class="brands-list">
+            <!-- EY Certified -->
+            <div class="brand-logo">
+              <svg viewBox="0 0 24 24" fill="none">
+                <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" stroke="currentColor" stroke-width="2.2" />
+                <circle cx="12" cy="12" r="3" fill="var(--accent-orange)" />
+              </svg>
+              <span>EY Certified</span>
+            </div>
+            <!-- React & Node.js -->
+            <div class="brand-logo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <ellipse cx="12" cy="12" rx="10" ry="4.5" />
+                <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(60 12 12)" />
+                <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(120 12 12)" />
+              </svg>
+              <span>React & Node.js</span>
+            </div>
+            <!-- Python & OpenCV -->
+            <div class="brand-logo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v10M7 12h10" />
+              </svg>
+              <span>Python & OpenCV</span>
+            </div>
+            <!-- Supabase & n8n -->
+            <div class="brand-logo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="currentColor" opacity="0.8" />
+              </svg>
+              <span>Supabase & n8n</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: FEATURED ENGINEERING -->
+      <section class="behind-section" id="projects">
+        <div class="behind-header">
+          <div class="behind-left">
+            <div class="section-eyebrow">Featured Engineering</div>
+            <h2 class="section-title">
+              Building Systems<br>
+              That Solve Real-World<br>
+              Challenges
+            </h2>
+          </div>
+          <div class="behind-right">
+            <p class="behind-desc">
+              From real-time computer vision attendance systems to predictive healthcare machine learning models and autonomous n8n workflows that eliminate manual friction.
+            </p>
+            <div class="behind-action-row">
+              <div class="behind-action-text">
+                Ready to Accelerate Your<br>Technical Initiatives?
+              </div>
+              <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                <a href="projects.html" class="btn-pill-white">
+                  <span>View all 5 projects</span>
+                  <span class="icon-circle">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </span>
+                </a>
+                <a href="#contact" class="btn-pill-orange">
+                  <span>Get in touch</span>
+                  <span class="icon-circle">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Showcase Cards Grid -->
+        <div class="showcase-grid">
+          <a href="projects.html" class="showcase-card" style="text-decoration:none; display:block;">
+            <img src="./assets/face_recognition.jpg" alt="Face Recognition Attendance System (OpenCV & Supabase)" loading="lazy">
+          </a>
+          <a href="projects.html" class="showcase-card" style="text-decoration:none; display:block;">
+            <img src="./assets/disease_prediction.jpg" alt="Disease Prediction and Medical Cure (Python & ML)" loading="lazy">
+          </a>
+          <a href="projects.html" class="showcase-card" style="text-decoration:none; display:block;">
+            <img src="./assets/support_ticket.jpg" alt="AI Support Ticket Automation System (n8n & Gemini AI)" loading="lazy">
+          </a>
+        </div>
+      </section>
+
+      <!-- SECTION 4: ENGINEERING SPRINT WORKFLOW -->
+      <section class="workflow-section" id="workflow">
+        <div class="section-badge-blue">
+          <span class="dot"></span>
+          <span>Engineering Process</span>
+        </div>
+
+        <div class="workflow-header">
+          <h2 class="workflow-title">
+            A structured <span class="italic-serif">agile</span> development sprint from architecture to production deployment.
+          </h2>
+          <p class="workflow-desc">
+            My full-stack development methodology integrates relational database schema design, RESTful API development, machine learning pipeline training, and webhook automations into rapid, predictable delivery cycles.
+          </p>
+        </div>
+
+        <!-- Gantt Timeline Stepper with Vertical Guides -->
+        <div class="timeline-container">
+          <div class="timeline-guides">
+            <div class="guide-line"></div>
+            <div class="guide-line"></div>
+            <div class="guide-line"></div>
+            <div class="guide-line"></div>
+          </div>
+
+          <div class="timeline-grid">
+            <!-- Column 1 -->
+            <div class="timeline-col timeline-col-1">
+              <div class="timeline-capsule">
+                <span class="capsule-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </span>
+                <span class="capsule-label">DB Schema & Modeling</span>
+                <span class="duration-tag">2 days</span>
+              </div>
+
+              <div class="timeline-capsule">
+                <span class="capsule-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </span>
+                <span class="capsule-label">REST API Specs</span>
+                <span class="duration-tag">1 day</span>
+              </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="timeline-col timeline-col-2">
+              <div class="timeline-capsule">
+                <span class="capsule-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                </span>
+                <span class="capsule-label">React Frontend UI</span>
+                <span class="duration-tag">3 days</span>
+              </div>
+            </div>
+
+            <!-- Column 3 -->
+            <div class="timeline-col timeline-col-3">
+              <div class="timeline-capsule">
+                <span class="capsule-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </span>
+                <span class="capsule-label">ML Model Training</span>
+                <span class="duration-tag">2 days</span>
+              </div>
+
+              <div class="timeline-capsule">
+                <span class="capsule-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+                </span>
+                <span class="capsule-label">n8n Automation Webhooks</span>
+                <span class="duration-tag">1 day</span>
+              </div>
+            </div>
+
+            <!-- Column 4 -->
+            <div class="timeline-col timeline-col-4">
+              <div class="timeline-capsule">
+                <span class="capsule-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                </span>
+                <span class="capsule-label">Testing & Cloud Deploy</span>
+                <span class="duration-tag">2 days</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="workflow-footer-note">
+          <span class="dot"></span>
+          <span>Combining full-stack engineering with automation pipelines enables delivering production-grade web systems on time with measurable business velocity.</span>
+        </div>
+      </section>
+
+      <!-- SECTION 5: TECH ARCHITECTURE & ENGINEERING STACK -->
+      <section class="palette-section" id="palette">
+        <div class="section-badge-blue">
+          <span class="dot" style="background: var(--accent-orange); box-shadow: 0 0 10px var(--accent-orange);"></span>
+          <span>Core Tech Architecture</span>
+        </div>
+
+        <div class="palette-header">
+          <h2 class="palette-title">
+            A high-velocity engineering stack designed for intelligent AI systems, autonomous pipelines, and resilient web platforms.
+          </h2>
+        </div>
+
+        <!-- Radial Color Wheel & Glassmorphic Inspector Cards -->
+        <div class="palette-stage">
+
+          <!-- Central Segmented Radial Color Wheel -->
+          <div class="color-wheel-wrapper">
+            <svg class="color-wheel-svg" viewBox="0 0 320 320">
+              <!-- Base Track -->
+              <circle cx="160" cy="160" r="100" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="16" />
+
+              <!-- Segment 1: Full-Stack Web Development (Cyan Blue #38bdf8) -->
+              <path d="M 160 60 A 100 100 0 0 1 260 160" fill="none" stroke="#38bdf8" stroke-width="16" stroke-linecap="round" />
+
+              <!-- Segment 2: AI & Computer Vision (Purple Violet #a855f7) -->
+              <path d="M 260 160 A 100 100 0 0 1 160 260" fill="none" stroke="#a855f7" stroke-width="16" stroke-linecap="round" />
+
+              <!-- Segment 3: Autonomous Automation (Electric Orange #fa5a1e) -->
+              <path d="M 160 260 A 100 100 0 0 1 60 160" fill="none" stroke="#fa5a1e" stroke-width="18" stroke-linecap="round" />
+
+              <!-- Segment 4: Cloud & SQL Intel (Emerald Green #10b981) -->
+              <path d="M 60 160 A 100 100 0 0 1 160 60" fill="none" stroke="#10b981" stroke-width="16" stroke-linecap="round" />
+
+              <!-- Accent Indicator Nodes -->
+              <!-- Cyan Web Node -->
+              <circle cx="160" cy="60" r="9" fill="#38bdf8" filter="drop-shadow(0 0 8px #38bdf8)" />
+              
+              <!-- Purple AI Node -->
+              <circle cx="260" cy="160" r="9" fill="#a855f7" filter="drop-shadow(0 0 10px #a855f7)" />
+              
+              <!-- Orange Automation Node -->
+              <circle cx="160" cy="260" r="10" fill="#fa5a1e" filter="drop-shadow(0 0 12px #fa5a1e)" />
+
+              <!-- Emerald Cloud Node -->
+              <circle cx="60" cy="160" r="9" fill="#10b981" filter="drop-shadow(0 0 10px #10b981)" />
+            </svg>
+          </div>
+
+          <!-- Floating Inspector Card 1: Full-Stack Web Dev (Top Left) -->
+          <div class="color-card card-dark-accent">
+            <div class="color-card-header">
+              <span class="color-card-title">
+                <span class="color-preview-dot" style="background: #38bdf8; box-shadow: 0 0 10px #38bdf8;"></span>
+                Full-Stack Web Dev
+              </span>
+              <span class="color-card-close">✕</span>
+            </div>
+            <p class="color-card-desc">High-velocity web apps built with React, modular JavaScript, Node.js/Express REST APIs, and component-driven architecture.</p>
+            <table class="color-table">
+              <tr>
+                <td>STACK</td>
+                <td>React • Node.js • Express</td>
+                <td><span style="color: #38bdf8;">Production</span></td>
+              </tr>
+              <tr>
+                <td>FRONTEND</td>
+                <td>HTML5 • CSS3 • Tailwind</td>
+                <td><span style="color: var(--text-dim);">Modular UI</span></td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Floating Inspector Card 2: AI & Computer Vision (Top Right) -->
+          <div class="color-card card-soft-white">
+            <div class="color-card-header">
+              <span class="color-card-title">
+                <span class="color-preview-dot" style="background: #a855f7; box-shadow: 0 0 10px #a855f7;"></span>
+                AI & Computer Vision
+              </span>
+              <span class="color-card-close">✕</span>
+            </div>
+            <p class="color-card-desc">Intelligent systems powered by Python, OpenCV facial detection & recognition algorithms, and Scikit-learn predictive ML models.</p>
+            <table class="color-table">
+              <tr>
+                <td>MODELS</td>
+                <td>Python • OpenCV • Scikit</td>
+                <td><span style="color: #a855f7;">92%+ Acc</span></td>
+              </tr>
+              <tr>
+                <td>VISION</td>
+                <td>Facial Recognition • ML</td>
+                <td><span style="color: var(--text-dim);">Real-Time</span></td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Floating Inspector Card 3: Autonomous Automation (Bottom Left) -->
+          <div class="color-card card-electric-blue">
+            <div class="color-card-header">
+              <span class="color-card-title">
+                <span class="color-preview-dot" style="background: #fa5a1e; box-shadow: 0 0 10px #fa5a1e;"></span>
+                Workflow Automation
+              </span>
+              <span class="color-card-close">✕</span>
+            </div>
+            <p class="color-card-desc">Self-healing event-driven pipelines, multi-step cloud webhooks, and conversational AI bots orchestrating n8n with Gemini AI and Telegram.</p>
+            <table class="color-table">
+              <tr>
+                <td>ENGINE</td>
+                <td>n8n • Webhooks • Gemini</td>
+                <td><span style="color: var(--accent-orange);">Autonomous</span></td>
+              </tr>
+              <tr>
+                <td>PIPELINE</td>
+                <td>REST APIs • JSON Flow</td>
+                <td><span style="color: var(--text-dim);">24/7 Cloud</span></td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Floating Inspector Card 4: Database & Cloud Intel (Bottom Right) -->
+          <div class="color-card card-deep-background">
+            <div class="color-card-header">
+              <span class="color-card-title">
+                <span class="color-preview-dot" style="background: #10b981; box-shadow: 0 0 10px #10b981;"></span>
+                Data, Cloud & BI
+              </span>
+              <span class="color-card-close">✕</span>
+            </div>
+            <p class="color-card-desc">Production PostgreSQL persistence with Supabase authentication & storage, paired with EY-certified predictive analytics & Power BI dashboards.</p>
+            <table class="color-table">
+              <tr>
+                <td>STORAGE</td>
+                <td>PostgreSQL • Supabase • SQL</td>
+                <td><span style="color: #10b981;">Cloud Auth</span></td>
+              </tr>
+              <tr>
+                <td>ANALYTICS</td>
+                <td>EY Power BI • Tableau</td>
+                <td><span style="color: var(--text-dim);">Certified</span></td>
+              </tr>
+            </table>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- SECTION 6: COMPLETE FOOTER (Scroll Animation Finishes Exactly Here) -->
+    <footer class="footer" id="contact">
+      <div class="container footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <a href="#home" class="logo">
+              <span>Tushar Sawale</span>
+              <span style="display:inline-block; width:6px; height:6px; background:var(--accent-orange); border-radius:50%; margin-left:6px;"></span>
+            </a>
+            <p class="footer-tagline">Full-Stack Software Developer & AI Automation Engineer based in Pune, India. Specializing in React, Python, Node.js, and autonomous n8n workflows.</p>
+            <div style="margin-top: 18px; font-size: 0.86rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 6px;">
+              <span>📍 Pune, Maharashtra, India</span>
+              <span>📧 <a href="mailto:tusharsawale49@gmail.com" style="color: #ffffff; text-decoration: none;">tusharsawale49@gmail.com</a></span>
+              <span>📞 <a href="tel:+917028182891" style="color: #ffffff; text-decoration: none;">+91 7028182891</a></span>
+            </div>
+          </div>
+          <div class="footer-nav-groups">
+            <div class="footer-col">
+              <span class="footer-col-title">Navigation</span>
+              <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="projects.html">Projects (5)</a></li>
+                <li><a href="#workflow">Engineering Process</a></li>
+                <li><a href="#palette">Tech Architecture</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <span class="footer-col-title">Specializations</span>
+              <ul>
+                <li><a href="projects.html">Full-Stack Web</a></li>
+                <li><a href="projects.html">AI & Computer Vision</a></li>
+                <li><a href="projects.html">Workflow Automation</a></li>
+                <li><a href="projects.html">Data Analytics & BI</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <span class="footer-col-title">Connect</span>
+              <ul>
+                <li><a href="https://linkedin.com/in/tushar-sawale" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+                <li><a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener">GitHub ↗</a></li>
+                <li><a href="mailto:tusharsawale49@gmail.com">Email Me ↗</a></li>
+                <li><a href="tel:+917028182891">Call / WhatsApp ↗</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="footer-copy">© 2026 Tushar Sawale. Crafted with full-stack precision. All rights reserved.</p>
+          <a href="#home" class="back-to-top">
+            <span>Back to top</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Local Lenis smooth scrolling engine -->
+  <script src="./lenis.min.js"></script>
+
+  <script>
+    (function () {
+      const TOTAL_FRAMES = 300;
+      const FOLDER = './ezgif-6994af27000a0db3-jpg';
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d', { alpha: false });
+      const header = document.getElementById('header');
+
+      // Enable pristine rendering
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+
+      // Frame images cache
+      const frames = new Array(TOTAL_FRAMES);
+      const isLoaded = new Array(TOTAL_FRAMES).fill(false);
+
+      // Frame interpolation state
+      let currentFrame = 1;
+      let targetFrame = 1;
+      let renderedFrame = -1;
+
+      // File path generator
+      function frameSrc(index) {
+        return `${FOLDER}/ezgif-frame-${String(index).padStart(3, '0')}.jpg`;
+      }
+
+      // Responsive cover sizing with exact pixel ratio alignment
+      function resizeCanvas() {
+        const dpr = Math.max(window.devicePixelRatio || 1, 1);
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+
+        renderedFrame = -1;
+        drawFrame(Math.round(currentFrame));
+      }
+
+      // Render frame with high-quality cover scaling
+      function drawFrame(frameNumber) {
+        const index = Math.max(0, Math.min(TOTAL_FRAMES - 1, frameNumber - 1));
+
+        let img = frames[index];
+        // If current frame isn't loaded yet, fallback to closest available frame
+        if (!isLoaded[index]) {
+          let closest = -1;
+          let minDiff = Infinity;
+          for (let i = 0; i < TOTAL_FRAMES; i++) {
+            if (isLoaded[i]) {
+              const diff = Math.abs(i - index);
+              if (diff < minDiff) {
+                minDiff = diff;
+                closest = i;
+              }
+            }
+          }
+          if (closest !== -1) {
+            img = frames[closest];
+          }
+        }
+
+        if (!img || !img.complete || img.naturalWidth === 0) return;
+
+        const cw = canvas.width;
+        const ch = canvas.height;
+        const iw = img.naturalWidth;
+        const ih = img.naturalHeight;
+
+        const canvasRatio = cw / ch;
+        const imgRatio = iw / ih;
+
+        let dw, dh, dx, dy;
+        if (canvasRatio > imgRatio) {
+          dw = cw;
+          dh = cw / imgRatio;
+          dx = 0;
+          dy = (ch - dh) / 2;
+        } else {
+          dh = ch;
+          dw = ch * imgRatio;
+          dx = (cw - dw) / 2;
+          dy = 0;
+        }
+
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+
+        ctx.drawImage(img, Math.round(dx), Math.round(dy), Math.round(dw), Math.round(dh));
+        renderedFrame = frameNumber;
+      }
+
+      // Compute scroll progress: mapped exactly from scroll top 0 to the bottom of the footer
+      function updateTargetFrame(scrollProgress) {
+        const progress = Math.max(0, Math.min(1, scrollProgress));
+        targetFrame = 1 + progress * (TOTAL_FRAMES - 1);
+      }
+
+      function onNativeScroll() {
+        const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+        const maxScroll = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight;
+        const progress = maxScroll > 0 ? scrollY / maxScroll : 0;
+        updateTargetFrame(progress);
+
+        if (scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      }
+
+      // Initialize Lenis smooth scroll
+      let lenis = null;
+      if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+          smoothTouch: false,
+          touchMultiplier: 1.5,
+        });
+
+        lenis.on('scroll', (e) => {
+          updateTargetFrame(e.progress);
+          if (e.scroll > 50) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        });
+
+        // Smooth anchor link navigation with Lenis
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener('click', (e) => {
+            const targetId = anchor.getAttribute('href');
+            if (targetId && targetId !== '#' && targetId !== '#!') {
+              const targetEl = document.querySelector(targetId);
+              if (targetEl) {
+                e.preventDefault();
+                lenis.scrollTo(targetEl, { offset: -20, duration: 1.3 });
+              }
+            }
+          });
+        });
+      }
+
+      // Animation loop with smooth linear interpolation
+      function tick(time) {
+        if (lenis) {
+          lenis.raf(time);
+        }
+
+        // Smoothly interpolate towards target frame
+        const delta = targetFrame - currentFrame;
+        if (Math.abs(delta) > 0.001) {
+          const damping = lenis ? 0.16 : 0.1;
+          currentFrame += delta * damping;
+        } else {
+          currentFrame = targetFrame;
+        }
+
+        const nextToRender = Math.round(currentFrame);
+        if (nextToRender !== renderedFrame) {
+          drawFrame(nextToRender);
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      // Preload image sequence with priority on frame 1
+      function preloadSequence() {
+        const first = new Image();
+        first.src = frameSrc(1);
+        frames[0] = first;
+        first.onload = () => {
+          isLoaded[0] = true;
+          drawFrame(1);
+        };
+
+        for (let i = 2; i <= TOTAL_FRAMES; i++) {
+          const idx = i - 1;
+          const img = new Image();
+          img.src = frameSrc(i);
+          frames[idx] = img;
+
+          img.onload = () => {
+            isLoaded[idx] = true;
+            if (Math.round(currentFrame) === i) {
+              drawFrame(i);
+            }
+          };
+        }
+      }
+
+      // Tech Stack HUD Cards: Interactive Dim / Reveal
+      document.querySelectorAll('.color-card').forEach(card => {
+        const closeBtn = card.querySelector('.color-card-close');
+        if (closeBtn) {
+          closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isDimmed = card.getAttribute('data-dimmed') === 'true';
+            if (isDimmed) {
+              card.style.opacity = '1';
+              card.style.transform = '';
+              card.setAttribute('data-dimmed', 'false');
+            } else {
+              card.style.opacity = '0.22';
+              card.style.transform = 'scale(0.92)';
+              card.setAttribute('data-dimmed', 'true');
+            }
+          });
+          card.addEventListener('click', () => {
+            if (card.getAttribute('data-dimmed') === 'true') {
+              card.style.opacity = '1';
+              card.style.transform = '';
+              card.setAttribute('data-dimmed', 'false');
+            }
+          });
+        }
+      });
+
+      // Event listeners
+      window.addEventListener('resize', resizeCanvas, { passive: true });
+      window.addEventListener('scroll', onNativeScroll, { passive: true });
+
+      // Startup
+      resizeCanvas();
+      preloadSequence();
+      onNativeScroll();
+      requestAnimationFrame(tick);
+    })();
+  </script>
+</body>
+</html>

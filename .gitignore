@@ -1,0 +1,11 @@
+# Ignored directories
+ezgif-6994af27000a0db3-jpg_backup/
+.vercel
+node_modules/
+
+# OS and Editor junk
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
