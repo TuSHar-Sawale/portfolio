@@ -282,10 +282,16 @@
 
     .showcase-card-footer {
       display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 0 4px;
+    }
+
+    .showcase-meta-row {
+      display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 0 4px;
     }
 
     .showcase-cat {
@@ -294,8 +300,7 @@
       color: var(--accent-orange);
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      display: block;
-      margin-bottom: 3px;
+      white-space: nowrap;
     }
 
     .showcase-name {
@@ -303,12 +308,16 @@
       font-weight: 700;
       color: #ffffff;
       margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .showcase-links {
       display: flex;
       gap: 8px;
       align-items: center;
+      flex-shrink: 0;
     }
 
     .showcase-link-btn {
@@ -320,6 +329,12 @@
       padding: 5px 12px;
       border-radius: 9999px;
       text-decoration: none;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+      line-height: 1.2;
       transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
 
@@ -808,9 +823,15 @@
       color: #0b0709;
       font-size: 0.72rem;
       font-weight: 700;
-      padding: 4px 12px;
+      padding: 5px 12px;
       border-radius: 9999px;
       letter-spacing: -0.01em;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      line-height: 1;
     }
 
     .workflow-footer-note {
@@ -1408,14 +1429,14 @@
               <img src="./assets/face_recognition.jpg" alt="Face Recognition Attendance System (OpenCV & Supabase)" loading="lazy">
             </a>
             <div class="showcase-card-footer">
-              <div>
+              <div class="showcase-meta-row">
                 <span class="showcase-cat">AI & Computer Vision</span>
-                <h4 class="showcase-name">Face Recognition Attendance</h4>
+                <div class="showcase-links">
+                  <a href="projects.html" class="showcase-link-btn">Case Study ↗</a>
+                  <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="showcase-link-btn gh">GitHub ↗</a>
+                </div>
               </div>
-              <div class="showcase-links">
-                <a href="projects.html" class="showcase-link-btn">Case Study ↗</a>
-                <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="showcase-link-btn gh">GitHub ↗</a>
-              </div>
+              <h4 class="showcase-name">Face Recognition Attendance</h4>
             </div>
           </div>
 
@@ -1425,14 +1446,14 @@
               <img src="./assets/disease_prediction.jpg" alt="Disease Prediction & Health Guidance (Python & ML)" loading="lazy">
             </a>
             <div class="showcase-card-footer">
-              <div>
+              <div class="showcase-meta-row">
                 <span class="showcase-cat">Machine Learning</span>
-                <h4 class="showcase-name">Disease Prediction & Guidance</h4>
+                <div class="showcase-links">
+                  <a href="projects.html" class="showcase-link-btn">Case Study ↗</a>
+                  <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="showcase-link-btn gh">GitHub ↗</a>
+                </div>
               </div>
-              <div class="showcase-links">
-                <a href="projects.html" class="showcase-link-btn">Case Study ↗</a>
-                <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="showcase-link-btn gh">GitHub ↗</a>
-              </div>
+              <h4 class="showcase-name">Disease Prediction & Guidance</h4>
             </div>
           </div>
 
@@ -1442,14 +1463,14 @@
               <img src="./assets/support_ticket.jpg" alt="AI Support Ticket Automation System (n8n & Gemini AI)" loading="lazy">
             </a>
             <div class="showcase-card-footer">
-              <div>
+              <div class="showcase-meta-row">
                 <span class="showcase-cat">Workflow Automation</span>
-                <h4 class="showcase-name">AI Support Ticket Automation</h4>
+                <div class="showcase-links">
+                  <a href="projects.html" class="showcase-link-btn">Case Study ↗</a>
+                  <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="showcase-link-btn gh">GitHub ↗</a>
+                </div>
               </div>
-              <div class="showcase-links">
-                <a href="projects.html" class="showcase-link-btn">Case Study ↗</a>
-                <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="showcase-link-btn gh">GitHub ↗</a>
-              </div>
+              <h4 class="showcase-name">AI Support Ticket Automation</h4>
             </div>
           </div>
         </div>
