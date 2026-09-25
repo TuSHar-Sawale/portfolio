@@ -410,6 +410,28 @@
       border-color: var(--accent-orange);
     }
 
+    .card-action-btn.live {
+      color: #34d399;
+      border-color: rgba(16, 185, 129, 0.4);
+      background: rgba(16, 185, 129, 0.12);
+    }
+
+    .card-action-btn.live:hover {
+      background: rgba(16, 185, 129, 0.28);
+      border-color: #34d399;
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
+    }
+
+    .card-action-btn.live .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 6px #10b981;
+      display: inline-block;
+    }
+
     .modal-section-block {
       margin-top: 14px;
       padding: 12px 16px;
@@ -1863,6 +1885,7 @@
                      data-flow="Camera Stream → OpenCV Haar Cascade / Face Encodings → Vector Match → Node.js / Express API → Supabase PostgreSQL"
                      data-metric1="Automated Detection" data-metric2="OpenCV Vision" data-metric3="Supabase Auth"
                      data-github="https://github.com/TuSHar-Sawale"
+                     data-live="https://face-recognition-attendance-system-jz4i.onrender.com"
                      data-img="./assets/face_recognition.jpg">
               <div class="card-media">
                 <span class="card-overlay-badge">Computer Vision</span>
@@ -1885,6 +1908,9 @@
                   <span class="pill-tag">Supabase</span>
                 </div>
                 <div class="card-actions-row">
+                  <a href="https://face-recognition-attendance-system-jz4i.onrender.com" target="_blank" rel="noopener" class="card-action-btn live" onclick="event.stopPropagation()">
+                    <span class="live-dot"></span> Live App ↗
+                  </a>
                   <span class="card-action-btn">Case Study ↗</span>
                   <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="card-action-btn gh" onclick="event.stopPropagation()">GitHub ↗</a>
                 </div>
@@ -2153,13 +2179,22 @@
                     <td>
                       <div class="archive-client">
                         <span class="archive-dot"></span>
-                        <span>Face Recognition Attendance</span>
+                        <a href="https://face-recognition-attendance-system-jz4i.onrender.com" target="_blank" rel="noopener" style="color:inherit; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                          <span>Face Recognition Attendance</span>
+                          <span style="font-size:0.75rem; color:#34d399;">↗</span>
+                        </a>
                       </div>
                     </td>
                     <td>Deployed AI Application</td>
                     <td>2026</td>
                     <td>OpenCV, React, Node.js, Express, Supabase PostgreSQL</td>
-                    <td><span class="badge-status featured">Automated Detection</span></td>
+                    <td>
+                      <a href="https://face-recognition-attendance-system-jz4i.onrender.com" target="_blank" rel="noopener" style="text-decoration:none;">
+                        <span class="badge-status award" style="cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+                          <span style="width:6px; height:6px; border-radius:50%; background:#10b981; box-shadow:0 0 6px #10b981; display:inline-block;"></span> Live App ↗
+                        </span>
+                      </a>
+                    </td>
                   </tr>
                   <tr class="archive-row">
                     <td>
@@ -2411,10 +2446,15 @@
           </div>
         </div>
         <div style="display:flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; margin-top: 16px; flex-wrap:wrap; gap:16px;">
-          <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" id="modalGhLink" class="btn-pill-white" style="font-size:0.82rem; padding:8px 18px;">
-            <span>View Source on GitHub ↗</span>
-          </a>
-          <button class="btn-pill-orange" id="modalBottomClose">
+          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+            <a href="#" target="_blank" rel="noopener" id="modalLiveLink" class="btn-pill-orange" style="font-size:0.82rem; padding:8px 18px; display:none; justify-content:center;">
+              <span>Try Live App ↗</span>
+            </a>
+            <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" id="modalGhLink" class="btn-pill-white" style="font-size:0.82rem; padding:8px 18px;">
+              <span>View Source on GitHub ↗</span>
+            </a>
+          </div>
+          <button class="btn-pill-orange" id="modalBottomClose" style="background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.15); color:#ffffff;">
             <span>Close preview</span>
           </button>
         </div>
@@ -2512,6 +2552,7 @@
       const modalSolution = document.getElementById('modalSolution');
       const modalFlow = document.getElementById('modalFlow');
       const modalGhLink = document.getElementById('modalGhLink');
+      const modalLiveLink = document.getElementById('modalLiveLink');
       const metricVal1 = document.getElementById('metricVal1');
       const metricVal2 = document.getElementById('metricVal2');
       const metricVal3 = document.getElementById('metricVal3');
@@ -2542,6 +2583,15 @@
           if (modalSolution) modalSolution.textContent = card.getAttribute('data-solution') || '—';
           if (modalFlow) modalFlow.textContent = card.getAttribute('data-flow') || '—';
           if (modalGhLink) modalGhLink.href = card.getAttribute('data-github') || 'https://github.com/TuSHar-Sawale';
+          const liveUrl = card.getAttribute('data-live');
+          if (modalLiveLink) {
+            if (liveUrl) {
+              modalLiveLink.href = liveUrl;
+              modalLiveLink.style.display = 'inline-flex';
+            } else {
+              modalLiveLink.style.display = 'none';
+            }
+          }
           metricVal1.textContent = card.getAttribute('data-metric1');
           metricVal2.textContent = card.getAttribute('data-metric2');
           metricVal3.textContent = card.getAttribute('data-metric3');

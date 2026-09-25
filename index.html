@@ -355,6 +355,28 @@
       border-color: var(--accent-orange);
     }
 
+    .showcase-link-btn.live {
+      color: #34d399;
+      border-color: rgba(16, 185, 129, 0.4);
+      background: rgba(16, 185, 129, 0.12);
+    }
+
+    .showcase-link-btn.live:hover {
+      background: rgba(16, 185, 129, 0.28);
+      border-color: #34d399;
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
+    }
+
+    .showcase-link-btn.live .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 6px #10b981;
+      display: inline-block;
+    }
+
     /* Blue Section Badges */
     .section-badge-blue {
       display: inline-flex;
@@ -1724,6 +1746,9 @@
               <div class="showcase-meta-row">
                 <span class="showcase-cat">AI & Computer Vision</span>
                 <div class="showcase-links">
+                  <a href="https://face-recognition-attendance-system-jz4i.onrender.com" target="_blank" rel="noopener" class="showcase-link-btn live">
+                    <span class="live-dot"></span> Live App ↗
+                  </a>
                   <a href="projects.html" class="showcase-link-btn">Case Study ↗</a>
                   <a href="https://github.com/TuSHar-Sawale" target="_blank" rel="noopener" class="showcase-link-btn gh">GitHub ↗</a>
                 </div>
